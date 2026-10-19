@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+    <title>BaraCoffee — Good Coffee. Better Moments.</title>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Fraunces:wght@600;800&family=DM+Sans:wght@400;500;700&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body>
+    <svg width="0" height="0" style="position:absolute">
+        <defs>
+            <symbol id="cp" viewBox="0 0 100 100">
+                <path d="M18 34h56v26a24 24 0 0 1-24 24h-8a24 24 0 0 1-24-24z" fill="#fffaf2" />
+                <path d="M74 40h6a10 10 0 0 1 0 20h-8" fill="none" stroke="#fffaf2" stroke-width="6" />
+                <ellipse cx="46" cy="34" rx="28" ry="5" fill="#a8672f" />
+                <path d="M34 22c-5-6 5-9 0-15M50 22c-5-6 5-9 0-15M64 22c-5-6 5-9 0-15" fill="none" stroke="#fffaf2"
+                    stroke-width="3" stroke-linecap="round" opacity=".7" />
+            </symbol>
+        </defs>
+    </svg>
+    <div id="ld">
+        <div><svg viewBox="0 0 160 170">
+                <defs>
+                    <clipPath id="cupInterior">
+                        <path d="M34 84h92v32a32 32 0 0 1-32 32H66a32 32 0 0 1-32-32z" />
+                    </clipPath>
+                </defs>
+                <path class="pour" d="M80 0v62" />
+                <path d="M30 80h100v36a36 36 0 0 1-36 36H66a36 36 0 0 1-36-36z" fill="#fffaf2" />
+                <path d="M130 90h8a14 14 0 0 1 0 28h-10" fill="none" stroke="#fffaf2" stroke-width="8" />
+                <rect class="fill" x="36" y="84" width="88" height="62" rx="10" fill="#a8672f"
+                    clip-path="url(#cupInterior)" />
+                <path class="st" d="M60 70c-8-10 8-14 0-26" />
+                <path class="st" d="M80 70c-8-10 8-14 0-26" style="animation-delay:1.7s" />
+                <path class="st" d="M100 70c-8-10 8-14 0-26" style="animation-delay:2s" />
+            </svg>
+            <div class="logo">BaraCoffee</div>
+        </div><button id="sk">Skip</button>
+    </div>
+
+    <nav id="nv"><a class="logo" href="#home"><i></i>BaraCoffee</a>
+        <ul id="ul">
+            <li><a href="#home">Home</a></li>
+            <li><a href="#menu">Menu</a></li>
+            <li><a href="#story">Our Story</a></li>
+            <li><a href="#gallery">Gallery</a></li>
+            <li><a href="#reserve">Reservations</a></li>
+            <li><a href="#contact">Contact</a></li>
+            <li><button id="th" class="btn o" aria-label="Toggle light or dark theme">🌙</button></li>
+            <li><button class="btn o cart-open" id="cart-trigger" type="button">Cart (<span id="cart-count">0</span>)</button></li>
+            <li><a class="btn l" href="#reserve">Order / Reserve</a></li>
+        </ul><button id="hb" aria-label="Menu"><span></span><span></span><span></span></button>
+    </nav>
+
+    <section id="home" class="hero">
+        <div class="bean" style="left:8%;top:22%"></div>
+        <div class="bean" style="left:46%;top:80%;animation-delay:2s;transform:scale(.7)"></div>
+        <div class="bean" style="right:6%;top:18%;animation-delay:4s"></div>
+        <div class="w">
+            <div class="rv">
+                <div class="eye" style="color:#e9b878">Specialty café · Batangas</div>
+                <h1>Good coffee.<br><em>Better moments.</em></h1>
+                <p>Crafted coffee, fresh-baked favorites, and a warm corner to slow down. Your usual is waiting.</p><a
+                    class="btn l" href="#menu">Explore Our Menu</a> <a class="btn o" href="#reserve">Reserve a Table</a>
+                <button class="btn o cart-open" type="button">Order Now</button>
+                <div class="stats">
+                    <div><b data-n="12000">0</b><span>cups poured monthly</span></div>
+                    <div><b data-n="38">0</b><span>menu favorites</span></div>
+                    <div><b data-n="10">0</b><span>years in the neighborhood</span></div>
+                </div>
+            </div>
+            <div class="cup"><svg viewBox="0 0 100 100">
+                    <use href="#cp" />
+                </svg></div>
+        </div>
+    </section>
+
+    <section id="why">
+        <div class="w rv">
+            <div class="eye">Why Bara</div>
+            <h2>Made for your moment.</h2>
+            <div class="why">
+                <div><svg viewBox="0 0 48 48">
+                        <path d="M24 4c8 8 12 14 12 22a12 12 0 0 1-24 0c0-8 4-14 12-22zM24 14v26" />
+                    </svg>
+                    <h3>Freshly brewed</h3>
+                    <p>Single-origin beans roasted weekly and pulled by baristas who care about the details.</p>
+                </div>
+                <div><svg viewBox="0 0 48 48">
+                        <circle cx="24" cy="24" r="18" />
+                        <path d="M24 12v12l8 5" />
+                    </svg>
+                    <h3>Slow down here</h3>
+                    <p>Conversations, laptops, first dates, quiet corners. Stay as long as the cup lasts. Or longer.</p>
+                </div>
+                <div><svg viewBox="0 0 48 48">
+                        <path d="M8 20h32l-4 20H12zM14 20c0-8 20-8 20 0M20 12l4-6 4 6" />
+                    </svg>
+                    <h3>Something for everyone</h3>
+                    <p>Coffee, matcha, fruit teas, pastries, desserts and light meals, all made in-house.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="feat">
+        <div class="w">
+            <div class="eye">Staff picks</div>
+            <h2>Your next favorite.</h2>
+            <div class="grid" id="fg"></div>
+        </div>
+    </section>
+
+    <section id="menu">
+        <div class="w">
+            <div class="eye">The menu</div>
+            <h2>Pick your poison. Or your pastry.</h2>
+            <div class="tabs" id="tb"></div>
+            <div class="grid" id="mg"></div>
+        </div>
+    </section>
+
+    <section id="story">
+        <div class="w">
+            <div class="rv">
+                <div class="eye" style="color:#e9b878">Our story</div>
+                <h2>Coffee should bring people together.</h2>
+                <p>BaraCoffee began as a tiny counter with one grinder, one machine, and a very stubborn idea: a good
+                    cup can make an ordinary morning feel like yours.</p>
+                <p>Word spread. Neighbors became regulars, regulars became friends. Today the counter is a full café
+                    where people meet before work, celebrate small wins, or just sit quietly with a flat white.</p>
+                <p>We still taste every new batch ourselves. We still remember your name.</p>
+                <div class="cn">
+                    <div><b data-n="6">0</b>origin farms</div>
+                    <div><b data-n="14">0</b>baristas</div>
+                    <div><b data-n="1">0</b>big idea</div>
+                </div>
+            </div>
+            <div class="sv rv"><svg viewBox="0 0 100 100">
+                    <use href="#cp" />
+                </svg></div>
+        </div>
+    </section>
+
+    <section id="gallery">
+        <div class="w">
+            <div class="eye">Inside Bara</div>
+            <h2>Take a look around.</h2>
+            <div class="gl" id="gl"></div>
+        </div>
+    </section>
+
+    <section id="occ">
+        <div class="w rv">
+            <div class="eye">Your table is waiting</div>
+            <h2>Whatever brings you in.</h2>
+            <p style="color:var(--mut);max-width:560px">Window seats for work, sofas for catch-ups, a candlelit corner
+                for evenings. Pick a reason. We'll handle the rest.</p>
+            <div class="oc">
+                <div>☕ Morning coffee</div>
+                <div>💻 Work sessions</div>
+                <div>❤️ Dates</div>
+                <div>👥 Catch-ups</div>
+                <div>📚 Study sessions</div>
+                <div>🎉 Small celebrations</div>
+            </div>
+        </div>
+    </section>
+
+    <section id="reserve">
+        <div class="w two">
+            <div class="rv">
+                <div class="eye">Reservations</div>
+                <h2>Save your spot.</h2>
+                <p style="color:var(--mut)">Tell us when and how many. We'll keep a table warm for you.</p>
+            </div>
+            <div>
+                <form class="demo">
+                    <div><label>Full name</label><input required></div>
+                    <div><label>Email</label><input type="email" required></div>
+                    <div><label>Phone</label><input type="tel"></div>
+                    <div><label>Guests</label><select>
+                            <option>1</option>
+                            <option selected>2</option>
+                            <option>3–4</option>
+                            <option>5–8</option>
+                        </select></div>
+                    <div><label>Date</label><input type="date" required></div>
+                    <div><label>Time</label><input type="time" value="15:00" required></div>
+                    <div class="f"><label>Occasion</label><select>
+                            <option>Just coffee</option>
+                            <option>Date</option>
+                            <option>Work session</option>
+                            <option>Birthday</option>
+                            <option>Catch-up</option>
+                        </select></div>
+                    <div class="f"><label>Special requests</label><textarea rows="3"></textarea></div>
+                    <div class="f"><button class="btn" style="width:100%">Reserve My Table</button>
+                        <div class="ok">Thanks! Your reservation request has been received. This is a demo website, so
+                            no reservation has actually been created.</div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <section id="tm">
+        <div class="w">
+            <div class="eye" style="color:#e9b878">Kind words</div>
+            <h2>Overheard at Bara.</h2>
+            <div class="ts" id="ts"></div>
+            <div class="dt" id="dt"></div>
+        </div>
+    </section>
+
+    <section id="contact">
+        <div class="w two">
+            <div>
+                <div class="eye">Contact</div>
+                <h2>Say hello.</h2>
+                <form class="demo" style="margin-top:20px">
+                    <div><label>Name</label><input required></div>
+                    <div><label>Email</label><input type="email" required></div>
+                    <div class="f"><label>Subject</label><input></div>
+                    <div class="f"><label>Message</label><textarea rows="4" required></textarea></div>
+                    <div class="f"><button class="btn">Send Message</button>
+                        <div class="ok">Thanks for reaching out! This is a demo website, so your message was not
+                            actually sent.</div>
+                    </div>
+                </form>
+            </div>
+            <div class="loc rv">
+                <div class="map"><i></i></div>
+                <div class="li">
+                    <h3>BaraCoffee</h3>
+                    <div><span>📍 Address</span><span>Libjo, Batangas City</span></div>
+                    <div><span>📞 Phone</span><span>+63 912 345 6789</span></div>
+                    <div><span>✉ Email</span><span>hello@baracoffee.demo</span></div>
+                    <div><span>Mon – Fri</span><span>7:00 AM – 9:00 PM</span></div>
+                    <div><span>Sat – Sun</span><span>8:00 AM – 10:00 PM</span></div><a class="btn"
+                        href="https://www.google.com/maps/search/?api=1&amp;query=Libjo%2C%20Batangas%20City"
+                        target="_blank" rel="noopener noreferrer" style="margin-top:8px">Get Directions</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="logo"><i></i>BaraCoffee</div>A fictional café. This is a demo website. © 2026 BaraCoffee
+    </footer>
+
+    <div id="lb">
+        <div id="lbi"></div>
+        <p id="lbp"></p>
+    </div>
+    <div id="md" role="dialog" aria-modal="true" aria-labelledby="cart-title">
+        <div class="cart-dialog">
+            <section id="cart-view">
+                <h3 id="cart-title">Your cart</h3>
+                <p id="cart-empty">Your cart is empty. Add something delicious from the menu.</p>
+                <ul id="cart-items" aria-label="Cart items"></ul>
+                <div class="cart-summary"><strong>Total</strong><strong id="cart-total">₱0</strong></div>
+                <div class="cart-actions">
+                    <button class="btn o" id="mc" type="button">Continue browsing</button>
+                    <button class="btn" id="cart-checkout" type="button" disabled>Place order</button>
+                </div>
+            </section>
+            <section id="order-confirmation" hidden>
+                <h3 id="confirmation-title">Order received!</h3>
+                <p>Thanks, we got your order. This is a demo, so it hasn't been sent to the café.</p>
+                <button class="btn" id="confirmation-close" type="button">Done</button>
+            </section>
+        </div>
+    </div>
+    <p id="cart-status" class="sr-only" aria-live="polite"></p>
+    <div id="as">
+        <div id="bb"></div><button id="cb" aria-label="Coffee fact"><svg viewBox="0 0 100 100">
+                <use href="#cp" />
+            </svg></button>
+    </div>
+
+    <script src="js/script.js"></script>
+</body>
+
+</html>
