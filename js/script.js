@@ -6,10 +6,34 @@ var $ = function (s) { return document.querySelector(s) }, C = {
     'Desserts': ['#a0522d', 'Basque Cheesecake', 'Burnt top, creamy inside', 185, 'Chocolate Cake', 'Three layers, ganache', 170, 'Tiramisu', 'Espresso-soaked, mascarpone', 180]
 };
 var F = [['Bara Signature Latte', 'Brown sugar, oat cream, double shot', 180, 'Coffee', '#8a5230'], ['Brown Sugar Iced Coffee', 'Muscovado and cold milk', 170, 'Cold', '#5a3a28'], ['Caramel Cloud', 'Whipped caramel foam over espresso', 175, 'Coffee', '#c68a52'], ['Spanish Latte', 'Condensed milk, strong espresso', 165, 'Coffee', '#a8672f'], ['Matcha Cream', 'Ceremonial matcha, sweet cream', 175, 'Non-coffee', '#6f8a63'], ['Chocolate Mocha', 'Dark cocoa meets espresso', 160, 'Coffee', '#4a2a17'], ['Butter Croissant', 'Flaky and still warm', 95, 'Pastry', '#d9a35f'], ['Chocolate Cake', 'Three layers of ganache', 170, 'Dessert', '#7a3b20']];
+var photos = {
+    coffee: 'https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?auto=format&fit=crop&w=900&q=80',
+    iced: 'https://images.unsplash.com/photo-1461023058943-07fcbe16d735?auto=format&fit=crop&w=900&q=80',
+    matcha: 'https://images.unsplash.com/photo-1515823064-d6e0c04616a7?auto=format&fit=crop&w=900&q=80',
+    pastry: 'https://images.unsplash.com/photo-1555507036-ab1f4038808a?auto=format&fit=crop&w=900&q=80',
+    dessert: 'https://images.unsplash.com/photo-1578985545062-69928b1d9587?auto=format&fit=crop&w=900&q=80',
+    cafe: 'https://images.unsplash.com/photo-1501339847302-ac426a4a7cbb?auto=format&fit=crop&w=1200&q=85',
+    latteArt: 'https://images.unsplash.com/photo-1534778101976-62847782c213?auto=format&fit=crop&w=1000&q=80',
+    cafeCorner: 'https://images.unsplash.com/photo-1554118811-1e0d58224f24?auto=format&fit=crop&w=1000&q=80',
+    barista: 'https://images.unsplash.com/photo-1521017432531-fbd92d768814?auto=format&fit=crop&w=1000&q=80',
+    beans: 'https://images.unsplash.com/photo-1442512595331-e89e73853f31?auto=format&fit=crop&w=1000&q=80',
+    evening: 'https://images.unsplash.com/photo-1498804103079-a6351b050096?auto=format&fit=crop&w=1000&q=80'
+};
 function esc(s) { return String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;').replace(/'/g, '&#39;') }
-function card(n, d, p, c, k) { return '<div class="pc"><div class="pi" style="background:' + c + '"><svg viewBox="0 0 100 100"><use href="#cp"/></svg></div><div class="pb"><small>' + esc(k) + '</small><h3>' + esc(n) + '</h3><p>' + esc(d) + '</p><div class="pr">₱' + p + '<button class="add-cart" type="button" data-name="' + esc(n) + '" data-price="' + p + '" aria-label="Add ' + esc(n) + ' to cart">+</button></div></div></div>' }
-$('#fg').innerHTML = F.map(function (x) { return card(x[0], x[1], x[2], x[4], x[3]) }).join('');
-function show(k) { var a = C[k], h = ''; for (var i = 1; i < a.length; i += 3)h += card(a[i], a[i + 1], a[i + 2], a[0], k); $('#mg').innerHTML = h;[].forEach.call($('#mg').children, function (e, i) { e.style.animationDelay = i * 60 + 'ms' });[].forEach.call($('#tb').children, function (b) { b.classList.toggle('on', b.textContent == k) }) }
+function photoFor(name, category) {
+    if (/croissant|cinnamon|muffin|cookie/i.test(name)) return photos.pastry;
+    if (/cake|cheesecake|tiramisu/i.test(name)) return photos.dessert;
+    if (/matcha/i.test(name)) return photos.matcha;
+    if (/iced|cold|peach|strawberry/i.test(name)) return photos.iced;
+    if (/chocolate|cocoa/i.test(name)) return photos.dessert;
+    if (/pastry/i.test(category)) return photos.pastry;
+    if (/dessert/i.test(category)) return photos.dessert;
+    if (/cold/i.test(category)) return photos.iced;
+    return photos.coffee;
+}
+function card(n, d, p, k) { return '<div class="pc"><div class="pi"><img src="' + photoFor(n, k) + '" alt="' + esc(n + ' — ' + d) + '" loading="lazy" decoding="async"></div><div class="pb"><small>' + esc(k) + '</small><h3>' + esc(n) + '</h3><p>' + esc(d) + '</p><div class="pr">₱' + p + '<button class="add-cart" type="button" data-name="' + esc(n) + '" data-price="' + p + '" aria-label="Add ' + esc(n) + ' to cart">+</button></div></div></div>' }
+$('#fg').innerHTML = F.map(function (x) { return card(x[0], x[1], x[2], x[3]) }).join('');
+function show(k) { var a = C[k], h = ''; for (var i = 1; i < a.length; i += 3)h += card(a[i], a[i + 1], a[i + 2], k); $('#mg').innerHTML = h;[].forEach.call($('#mg').children, function (e, i) { e.style.animationDelay = i * 60 + 'ms' });[].forEach.call($('#tb').children, function (b) { b.classList.toggle('on', b.textContent == k) }) }
 $('#tb').innerHTML = Object.keys(C).map(function (k) { return '<button>' + esc(k) + '</button>' }).join(''); $('#tb').onclick = function (e) { if (e.target.tagName == 'BUTTON') show(e.target.textContent) }; show('Coffee');
 var cart = [], returnFocus = null;
 function money(amount) { return '₱' + amount.toLocaleString('en-PH') }
@@ -30,7 +54,10 @@ function renderCart() {
         total += item.price * item.quantity; count += item.quantity;
     });
     $('#cart-count').textContent = count;
-    $('#cart-trigger').setAttribute('aria-label', 'Shopping cart, ' + count + (count === 1 ? ' item' : ' items'));
+    $('#mobile-cart-count').textContent = count;
+    var cartLabel = 'Shopping cart, ' + count + (count === 1 ? ' item' : ' items');
+    $('#cart-trigger').setAttribute('aria-label', cartLabel);
+    $('#mobile-cart-trigger').setAttribute('aria-label', cartLabel);
     $('#cart-empty').hidden = cart.length > 0;
     $('#cart-total').textContent = money(total);
     $('#cart-checkout').disabled = cart.length === 0;
@@ -56,7 +83,7 @@ function closeCart() {
 document.addEventListener('click', function (e) {
     var open = e.target.closest('.cart-open'), add = e.target.closest('.add-cart'), action = e.target.closest('[data-cart-action]');
     if (open) {
-        if ($('#ul').classList.contains('on')) { $('#hb').classList.remove('x'); $('#ul').classList.remove('on') }
+        closeMenu();
         openCart();
     } else if (add) {
         addToCart(add.getAttribute('data-name'), Number(add.getAttribute('data-price')));
@@ -81,6 +108,7 @@ $('#cart-checkout').onclick = function () {
 };
 document.addEventListener('keydown', function (e) {
     if (e.key === 'Escape' && $('#md').classList.contains('on')) closeCart();
+    if (e.key === 'Escape' && $('#ul').classList.contains('on')) closeMenu();
     if (e.key === 'Tab' && $('#md').classList.contains('on')) {
         var buttons = $('#md').querySelectorAll('button:not([disabled])'), first = buttons[0], last = buttons[buttons.length - 1];
         if (e.shiftKey && document.activeElement === first) { e.preventDefault(); last.focus() }
@@ -88,17 +116,28 @@ document.addEventListener('keydown', function (e) {
     }
 });
 renderCart();
-var G = [['☕', 'Fresh pour', '#8a5230', 200], ['🎨', 'Latte art', '#c68a52', 260], ['🛋️', 'Cozy corner', '#6b3f24', 220], ['👩‍🍳', 'Our baristas', '#4a2a17', 280], ['🥐', 'Morning bakes', '#d9a35f', 200], ['🫘', 'Single-origin beans', '#5a3a28', 240], ['🌙', 'Evening glow', '#2a1810', 220], ['🍰', 'Dessert case', '#a0522d', 260], ['👯', 'Catch-up table', '#6f8a63', 200]];
-$('#gl').innerHTML = G.map(function (g, i) { return '<div class="gi" data-i="' + i + '" style="background:' + g[2] + '"><div style="height:' + g[3] + 'px">' + g[0] + '</div><span>' + g[1] + '</span></div>' }).join('');
-$('#gl').onclick = function (e) { var g = e.target.closest('.gi'); if (!g) return; var d = G[g.dataset.i]; $('#lbi').style.background = d[2]; $('#lbi').textContent = d[0]; $('#lbp').textContent = d[1]; $('#lb').classList.add('on') }; $('#lb').onclick = function () { this.classList.remove('on') };
+var G = [['Fresh pour', photos.coffee, 'Freshly prepared coffee ready to enjoy', 200], ['Latte art', photos.latteArt, 'A carefully poured latte with art in the foam', 260], ['Cozy corner', photos.cafeCorner, 'A warm, comfortable café seating area', 220], ['Our baristas', photos.barista, 'A barista preparing a cup of coffee', 280], ['Morning bakes', photos.pastry, 'Freshly baked croissants and pastries', 200], ['Single-origin beans', photos.beans, 'Coffee beans ready for brewing', 240], ['Evening glow', photos.evening, 'A welcoming café interior in warm light', 220], ['Dessert case', photos.dessert, 'A rich chocolate cake ready to serve', 260], ['Catch-up table', photos.cafe, 'A relaxed café space for meeting friends', 200]];
+$('#gl').innerHTML = G.map(function (g, i) { return '<div class="gi" data-i="' + i + '"><img src="' + g[1] + '" alt="' + esc(g[2]) + '" loading="lazy" decoding="async" style="height:' + g[3] + 'px"><span>' + esc(g[0]) + '</span></div>' }).join('');
+$('#gl').onclick = function (e) { var g = e.target.closest('.gi'); if (!g) return; var d = G[g.dataset.i]; $('#lbi').innerHTML = '<img src="' + d[1] + '" alt="' + esc(d[2]) + '">'; $('#lbp').textContent = d[0]; $('#lb').classList.add('on') }; $('#lb').onclick = function () { this.classList.remove('on') };
 var T = [['The Spanish Latte is dangerously good.', 'Mia'], ['My new favorite work-from-café spot.', 'Daniel'], ['The pastries disappear way too quickly.', 'Andrea'], ['Perfect for a quiet first date. We stayed three hours.', 'Paolo'], ['They remembered my order on the second visit.', 'Kaye'], ['Best cold brew in the city, honestly.', 'Rico']], ti = 0;
 $('#ts').innerHTML = T.map(function (t, i) { return '<div class="t' + (i ? '' : ' on') + '"><q>“' + t[0] + '”</q><b>— ' + t[1] + '</b></div>' }).join(''); $('#dt').innerHTML = T.map(function (t, i) { return '<button class="' + (i ? '' : 'on') + '" aria-label="Slide ' + (i + 1) + '"></button>' }).join('');
 function go(i) { ti = i;[].forEach.call($('#ts').children, function (e, j) { e.classList.toggle('on', j == i) });[].forEach.call($('#dt').children, function (e, j) { e.classList.toggle('on', j == i) }) }
 $('#dt').onclick = function (e) { var b = [].indexOf.call($('#dt').children, e.target); if (b > -1) go(b) }; setInterval(function () { go((ti + 1) % T.length) }, 4500);
 [].forEach.call(document.querySelectorAll('form.demo'), function (f) { f.onsubmit = function (e) { e.preventDefault(); f.querySelector('.ok').style.display = 'block'; f.reset() } });
 function done() { $('#ld').classList.add('out') } setTimeout(done, 3600); $('#sk').onclick = done;
-var nv = $('#nv'); addEventListener('scroll', function () { nv.classList.toggle('sc', scrollY > 40); $('.sv').style.setProperty('--py', ((scrollY - $('#story').offsetTop) * .06) + 'px') }, { passive: true });
-$('#hb').onclick = function () { this.classList.toggle('x'); $('#ul').classList.toggle('on') }; $('#ul').onclick = function (e) { if (e.target.tagName == 'A') { $('#hb').classList.remove('x'); this.classList.remove('on') } };
+var nv = $('#nv'); addEventListener('scroll', function () { nv.classList.toggle('sc', scrollY > 40) }, { passive: true });
+function setMenuOpen(open) {
+    $('#hb').classList.toggle('x', open);
+    $('#ul').classList.toggle('on', open);
+    $('#hb').setAttribute('aria-expanded', String(open));
+    $('#hb').setAttribute('aria-label', open ? 'Close menu' : 'Open menu');
+}
+function closeMenu() { setMenuOpen(false) }
+$('#hb').onclick = function () { setMenuOpen(!$('#ul').classList.contains('on')) };
+$('#ul').onclick = function (e) { if (e.target.closest('a')) closeMenu() };
+document.addEventListener('click', function (e) {
+    if ($('#ul').classList.contains('on') && !$('#ul').contains(e.target) && !$('#hb').contains(e.target)) closeMenu();
+});
 var io = new IntersectionObserver(function (es) { es.forEach(function (e) { if (e.isIntersecting) { e.target.classList.add('in');[].forEach.call(e.target.querySelectorAll('[data-n]'), cnt); if (e.target.dataset.n) cnt(e.target); io.unobserve(e.target) } }) }, { threshold: .15 });
 [].forEach.call(document.querySelectorAll('.rv'), function (e) { io.observe(e) });
 function cnt(el) { if (el.done) return; el.done = 1; var n = +el.dataset.n, s = performance.now(); (function t(now) { var p = Math.min((now - s) / 1400, 1); el.textContent = Math.round(n * p).toLocaleString(); if (p < 1) requestAnimationFrame(t) })(s) }

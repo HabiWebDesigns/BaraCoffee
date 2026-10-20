@@ -54,7 +54,14 @@
             <li><button id="th" class="btn o" aria-label="Toggle light or dark theme">🌙</button></li>
             <li><button class="btn o cart-open" id="cart-trigger" type="button">Cart (<span id="cart-count">0</span>)</button></li>
             <li><a class="btn l" href="#reserve">Order / Reserve</a></li>
-        </ul><button id="hb" aria-label="Menu"><span></span><span></span><span></span></button>
+        </ul><button id="mobile-cart-trigger" class="mobile-cart-trigger cart-open" type="button" aria-label="Shopping cart, 0 items">
+            <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+                <path d="M3 4h2l2.2 11.1a2 2 0 0 0 2 1.6h8.9a2 2 0 0 0 2-1.6L21.5 9H6" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" />
+                <circle cx="10" cy="20" r="1.4" fill="currentColor" />
+                <circle cx="18" cy="20" r="1.4" fill="currentColor" />
+            </svg>
+            <span id="mobile-cart-count">0</span>
+        </button><button id="hb" type="button" aria-label="Open menu" aria-controls="ul" aria-expanded="false"><span></span><span></span><span></span></button>
     </nav>
 
     <section id="home" class="hero">
@@ -65,18 +72,20 @@
             <div class="rv">
                 <div class="eye" style="color:#e9b878">Specialty café · Batangas</div>
                 <h1>Good coffee.<br><em>Better moments.</em></h1>
-                <p>Crafted coffee, fresh-baked favorites, and a warm corner to slow down. Your usual is waiting.</p><a
-                    class="btn l" href="#menu">Explore Our Menu</a> <a class="btn o" href="#reserve">Reserve a Table</a>
-                <button class="btn o cart-open" type="button">Order Now</button>
+                <p>Crafted coffee, fresh-baked favorites, and a warm corner to slow down. Your usual is waiting.</p>
+                <div class="hero-actions">
+                    <a class="btn l" href="#menu">Explore Our Menu</a>
+                    <a class="btn o" href="#reserve">Reserve a Table</a>
+                    <button class="btn o cart-open" type="button">Order Now</button>
+                </div>
                 <div class="stats">
                     <div><b data-n="12000">0</b><span>cups poured monthly</span></div>
                     <div><b data-n="38">0</b><span>menu favorites</span></div>
                     <div><b data-n="10">0</b><span>years in the neighborhood</span></div>
                 </div>
             </div>
-            <div class="cup"><svg viewBox="0 0 100 100">
-                    <use href="#cp" />
-                </svg></div>
+            <div class="cup"><img src="https://images.unsplash.com/photo-1501339847302-ac426a4a7cbb?auto=format&amp;fit=crop&amp;w=1200&amp;q=85"
+                    alt="Warm, inviting coffee shop interior" fetchpriority="high"></div>
         </div>
     </section>
 
@@ -141,9 +150,8 @@
                     <div><b data-n="1">0</b>big idea</div>
                 </div>
             </div>
-            <div class="sv rv"><svg viewBox="0 0 100 100">
-                    <use href="#cp" />
-                </svg></div>
+            <div class="sv rv"><img src="https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?auto=format&amp;fit=crop&amp;w=1000&amp;q=85"
+                    alt="Freshly prepared coffee, representing the café's story" loading="lazy"></div>
         </div>
     </section>
 
